@@ -77,6 +77,6 @@ function mapStateToProps(state) {
         loggingIn
     };
 }
-
+// connect to the redux store
 const connectedLoginPage = connect(mapStateToProps)(LoginPage);
 export { connectedLoginPage as LoginPage }; 

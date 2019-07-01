@@ -37,6 +37,9 @@ class HomePage extends React.Component {
                     </ul>
                 }
                 <p>
+                    <Link to="/lobby">Wait for game in lobby</Link>
+                </p>
+                <p>
                     <Link to="/login">Logout</Link>
                 </p>
             </div>
