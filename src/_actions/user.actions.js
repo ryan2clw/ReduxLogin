@@ -20,20 +20,12 @@ function login(username, password) {
                 user => { 
                     dispatch(success(user));
                     history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
                 }
             );
     };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { 
-        console.log("user", user);
-        return { 
-        type: userConstants.LOGIN_SUCCESS, user
-    } }
+    function success(user) {  return {  type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
@@ -48,7 +40,7 @@ function register(user) {
         userService.register(user)
             .then(
                 user => { 
-                    dispatch(success());
+                    dispatch(success(user));
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
                 },
