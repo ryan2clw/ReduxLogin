@@ -20,15 +20,12 @@ function login(username, password) {
     let headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     };
-    let body = {
+    let body = new URLSearchParams({
         username: username,
         password: password,
-        OTP: null,
-        Coords: null,
         Key: "8e22faa5-6f9e-4488-8efd-af1e8fcc7d6f",
-        Culture: null,
         Token: null
-    };
+    });
     const requestOptions = {
         method: 'POST',
         headers: headers,
