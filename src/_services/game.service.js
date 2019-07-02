@@ -11,8 +11,9 @@ function startGame(gameName) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ gameName })
     };
-
-    return fetch(`${config.apiUrl}/Bingo/StartGame`, requestOptions)
+    let myUri = `${config.apiUrl}/api/Bingo/StartGame`;
+    console.log("", )
+    return fetch(myUri, requestOptions)
         .then(handleResponse)
         .then(game => {
             // see if it works

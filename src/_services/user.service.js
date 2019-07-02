@@ -12,13 +12,30 @@ export const userService = {
 };
 
 function login(username, password) {
+    /* MARK TO DO: FIGURE OUT WHERE THESE NEXT 5 PARAMS COME FROM */
+    // let OTP = null;
+    // let Coords = null;
+    // let Culture = null;
+    // let Token = null;
+    let headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    let body = {
+        username: username,
+        password: password,
+        OTP: null,
+        Coords: null,
+        Key: "8e22faa5-6f9e-4488-8efd-af1e8fcc7d6f",
+        Culture: null,
+        Token: null
+    };
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        headers: headers,
+        credentials: 'include',
+        body: body
     };
-
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch("http://localhost:60128/api/WalletAPI/GetPlayerInfo", requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -84,13 +101,13 @@ function _delete(id) {
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        console.log("response", data);
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
                 location.reload(true);
             }
-
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
